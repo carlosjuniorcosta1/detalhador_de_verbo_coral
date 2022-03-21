@@ -87,6 +87,8 @@ driver.close()
 
 df.to_csv('verbo_web.csv')
 
+import pandas as pd
+
 
 lista_verbos = [x for x in lista_verbos if len(x)]
 
@@ -97,11 +99,10 @@ df['aspecto_lexical'] = aspecto_lista
 df['papel_tematico'] = papel_tematico_lista
 df['estrutura_sintatica'] = sintagma_lista
 df['exemplo_verbo_web'] = exemplo_verbo_web_lista
+df['lema_verbo_web'] = df['lema_verbo_web'].apply(lambda x: re.sub(r'\d+', '', x))
+df['lema_verbo_web'] = df['lema_verbo_web'].str.strip()
+df['lema_verbo_web'] = df['lema_verbo_web'].str.lower()
 
-
-
-df['lema'] = df['lema'].apply(lambda x: re.sub(r'\d+', '', x))
-df['lema'] = df['lema'].str.strip()
 
 df_verbos_cesq = pd.read_csv(file)
 
@@ -121,5 +122,5 @@ df_verbos_merged = df_verbos_cesq.merge(df, on = 'lema')
 
 #exportação 
 
-df_verbos_merged.to_excel('coral_esq_verbo_web.csv')
+df_verbos_merged.to_excel('coral_verbo_web.csv')
 
