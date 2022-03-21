@@ -252,4 +252,4 @@ df_verbos_merged = df_verbos_cesq.merge(df, on = 'lema')
 
 df_verbos_merged.to_excel('coral_verbo_web.csv')
 
->>>>>>> 70de4aa70c66eb618a4af718c212ca9c516d9668
+#código até aqui
